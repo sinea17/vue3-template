@@ -1,0 +1,1 @@
+import{_ as n,e as t,o as _,c as r,w as s,a as f,f as l,L as d}from"./components-96d537a5.js";import{b as e}from"./index-8a30231d.js";const o={},p=l("h1",null,"page2",-1);function i(u,m){const a=d,c=t;return _(),r(c,null,{default:s(()=>[f(a),p]),_:1})}typeof e=="function"&&e(o);var B=n(o,[["render",i]]);export{B as default};
