@@ -1,0 +1,1 @@
+import{_,d as t,a3 as o,o as n,D as r,w as s,a as c}from"./index.45dae07d.js";import{E as p}from"./space.80cea49c.js";import"./index.b87acd35.js";import"./vnode.e735c843.js";const d=t({__name:"index",setup(i){return(l,m)=>{const e=p,a=o;return n(),r(a,null,{default:s(()=>[c(e,{wrap:"",size:16})]),_:1})}}});var w=_(d,[["__scopeId","data-v-1ae502d6"]]);export{w as default};
