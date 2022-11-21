@@ -1,1 +1,0 @@
-import{_ as o,a3 as c,o as s,D as n,w as r,e,g as _}from"./index.45dae07d.js";const t={},l=_("h3",null,"Test",-1);function f(d,i){const a=c;return s(),n(a,null,{default:r(()=>[l]),_:1})}typeof e=="function"&&e(t);var p=o(t,[["render",f]]);export{p as default};
