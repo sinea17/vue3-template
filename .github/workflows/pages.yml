@@ -20,5 +20,9 @@ jobs:
       - name: Deploy 🚀 # 部署
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          branch: pages # 部署后提交到的分支
-          folder: dist # 这里填打包好的目录名称
+          # 这里的 ACCESS_TOKEN 名字需要和下文中的相对应
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          # 打包后的文件部署到哪个分支上
+          BRANCH: gh-pages
+          # 打包后的文件在哪里
+          FOLDER: dist
