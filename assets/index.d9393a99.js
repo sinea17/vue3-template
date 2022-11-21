@@ -1,0 +1,1 @@
+import{_ as n,a3 as a,o as t,D as c,w as o,g as l}from"./index.54492493.js";const r={},s=l("ul",null,[l("li",null,[l("p",null,"\u5B9A\u5236\u4E3B\u9898")]),l("li",null,[l("p",null,"\u4E1A\u52A1\u7EC4\u4EF6")]),l("li",null,[l("p",null,"SVG\u96C6\u5408")])],-1);function _(u,d){const e=a;return t(),c(e,null,{default:o(()=>[s]),_:1})}var p=n(r,[["render",_]]);export{p as default};
