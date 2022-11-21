@@ -13,7 +13,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   return {
-    base: '/vue3-template/',
+    base: './',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src')
