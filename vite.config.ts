@@ -63,8 +63,17 @@ export default defineConfig(({ mode }) => {
           rewrite: path => path.replace(/^\/file_api/, "")
         }
       }
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('components')) { // 把 components 文件里面的文件都打包到 components.js 中 
+              return 'components'
+            }
+          }
+        }
+      }
     }
   }
-}
-
-)
+})
