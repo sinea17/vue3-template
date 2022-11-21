@@ -7,22 +7,17 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # 构建环境使用 ubuntu
     steps:
-      - name: Checkout  # 将代码拉到虚拟机
-        uses: actions/checkout@v2
+      - name: Checkout 🛎️  # 将代码拉到虚拟机
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
 
-      - name: Install and Build # 下载依赖 打包项目
+      - name: Install and Build 🔧 # 下载依赖 打包项目
         run: |
           npm install
           npm run build
 
       - name: Deploy 🚀 # 部署
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          # 这里的 ACCESS_TOKEN 名字需要和下文中的相对应
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          # 打包后的文件部署到哪个分支上
-          BRANCH: gh-pages
-          # 打包后的文件在哪里
-          FOLDER: dist
+          folder: dist
