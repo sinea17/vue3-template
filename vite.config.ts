@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
+import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -51,6 +52,13 @@ export default defineConfig(({ mode }) => {
         iconDirs: [path.resolve(process.cwd(), "src/assets/svg")],
         symbolId: "icon-[dir]-[name]"
       }),
+      viteCompression({
+        verbose: true,
+        disable: false,
+        threshold: 10240,
+        algorithm: "gzip",
+        ext: ".gz"
+      })
     ],
     server: {
       port: 8080,
@@ -68,12 +76,18 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks(id) {
-            if (id.includes('components')) { // 把 components 文件里面的文件都打包到 components.js 中 
+            if (id.includes('components') && !id.includes('pages')) {
+              // 把 components 文件里面的文件都打包到 components.js 中 排除pages中的 components
               return 'components'
             }
-          }
+          },
+          // Static resource classification and packaging
+          chunkFileNames: "assets/js/[name]-[hash].js",
+          entryFileNames: "assets/js/[name]-[hash].js",
+          assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
         }
-      }
+      },
+      chunkSizeWarningLimit: 1024
     }
   }
 })

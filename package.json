@@ -48,6 +48,7 @@
     "unplugin-element-plus": "^0.4.1",
     "unplugin-vue-components": "^0.21.2",
     "vite": "^2.9.15",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-pages": "^0.23.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-layouts": "^0.6.0",
