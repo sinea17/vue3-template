@@ -1,0 +1,10 @@
+.el-button {
+  body &:not(.el-button--text, .el-button.is-link) {
+    min-width: 100px;
+    font-weight: bold;
+  }
+
+  body &+& {
+    margin-left: 16px;
+  }
+}

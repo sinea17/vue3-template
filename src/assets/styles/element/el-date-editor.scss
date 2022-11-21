@@ -1,0 +1,16 @@
+.el-date-editor {
+  body &.el-input {
+    width: 100%;
+  }
+
+  .el-input__wrapper {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  // 日期选择器
+  body &--daterange.el-input__wrapper {
+    width: 250px;
+    box-sizing: border-box;
+  }
+}

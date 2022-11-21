@@ -1,0 +1,45 @@
+.el-tabs {
+  body &__header {
+    margin: 0;
+    background: #fff;
+    padding: 0 16px;
+    border-bottom: 1px solid #E6E6E6;
+  }
+
+  body &__active-bar {
+    bottom: 1px;
+    background: #2C3EB2;
+    height: 3px;
+  }
+
+  body &__item {
+    padding-top: 20px;
+    line-height: 1;
+    height: 48px;
+    color: #999;
+
+    &:hover {
+      color: #2C3EB2;
+    }
+
+    &.is-active {
+      color: #2C3EB2;
+      font-weight: bold;
+    }
+  }
+
+  body &__nav-wrap::after {
+    display: none;
+  }
+
+  body &__nav-next,
+  body &__nav-prev {
+    padding-top: 7px;
+    font-size: 14px;
+    color: #2C3EB2;
+
+    &.is-disabled {
+      color: #999;
+    }
+  }
+}

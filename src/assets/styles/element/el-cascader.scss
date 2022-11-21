@@ -1,0 +1,18 @@
+.el-cascader {
+
+  body &-menu__list {
+    padding: 9px 0;
+
+    .el-checkbox {
+      margin-right: 16px;
+    }
+
+    .el-cascader-node {
+      padding: 0 16px;
+
+      &__label {
+        padding: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# 忽略 eslint 检查
+node_modules/
+dist/
+index.html

@@ -1,0 +1,70 @@
+.el-form {
+  body &--label-top.el-form--default {
+    .el-form-item {
+      margin: 0;
+
+      &+.el-form-item {
+        margin-top: 16px;
+      }
+
+      .el-form-item__label {
+        line-height: 1;
+      }
+    }
+
+    .el-input__wrapper,
+    .el-range-editor.el-input__wrapper {
+      background: #F7F7F7;
+    }
+
+    .el-input__wrapper:not(.is-focus):not(.el-range-editor),
+    .el-range-editor.el-input__wrapper:not(.is-active) {
+      box-shadow: none;
+    }
+
+    .el-cascader {
+      width: 100%;
+
+      &--large .el-input__wrapper {
+        min-height: 46px;
+      }
+    }
+  }
+
+  body &--inline {
+    margin-right: -16px;
+
+    .el-form-item {
+      margin: 0 16px 16px 0;
+
+      &__label {
+        height: 36px;
+        line-height: 36px;
+      }
+
+      &__content {
+        line-height: 36px;
+        min-width: 250px;
+      }
+
+      &[btn] {
+        .el-form-item__content {
+          min-width: 0;
+        }
+      }
+    }
+  }
+
+  .el-input__wrapper,
+  .el-range-editor.el-input__wrapper {
+    padding: 1px 16px;
+  }
+
+  .el-input--large {
+
+    .el-input__wrapper,
+    .el-range-editor.el-input__wrapper {
+      padding: 1px 16px;
+    }
+  }
+}

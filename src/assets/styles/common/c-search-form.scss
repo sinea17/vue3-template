@@ -1,0 +1,14 @@
+// 搜索表单右侧附属操作按钮
+.c-search-form {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+
+  .el-form--inline {
+    margin-right: 0;
+  }
+
+  &-sub {
+    margin-bottom: 16px;
+  }
+}

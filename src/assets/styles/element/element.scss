@@ -1,0 +1,20 @@
+// element-plus 主题定制
+@forward 'element-plus/theme-chalk/src/common/var.scss' with ($colors: ('primary': ('base': #324DFD)),
+  $text-color: ('primary': #404352, 'regular': #404352, 'placeholder': #B2B2B2),
+  $fill-color: ('lighter': #f7f7f7),
+  $border-color: ('': #E6E6E6),
+  $border-radius: ('base': 8px, 'small': 5px),
+  $common-component-size: ('default': 36px, 'large': 46px),
+  $button-padding-horizontal: ('default': 12px),
+  $popper: ('border-radius': 8px),
+  $table: ('header-text-color': #404352, 'header-bg-color': #F0F0F0, 'border-color': #E6E6E6, 'row-hover-bg-color': #EBEBEB, 'current-row-bg-color': #EFF2FE),
+  $table-padding: ('default': 10px 0),
+  $checkbox: ('input-height': 20px, 'input-width': 20px),
+  $card: ('border-radius': 8px, 'padding': 16px),
+  $drawer: ('padding-primary': 12px 16px),
+  $tag-padding: ('default': 8px) // $table-cell-padding: (
+  //   'default': 0 16px
+  // ),
+);
+
+@use "element-dark.scss";

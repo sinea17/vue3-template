@@ -1,0 +1,17 @@
+.el-table {
+  body & .cell {
+    padding: 0 16px;
+  }
+
+  th.el-table__cell {
+    height: 56px;
+  }
+
+  &.el-table--striped .el-table__body tr.current-row>td.el-table__cell {
+    background-color: var(--el-table-current-row-bg-color)
+  }
+
+  .el-table__empty-block {
+    height: 400px !important;
+  }
+}
