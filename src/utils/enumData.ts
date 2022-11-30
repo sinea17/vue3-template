@@ -1,4 +1,5 @@
 // * 系统枚举字典
+import { ElInput, ElSelect, ElDatePicker } from "element-plus";
 
 /**
  * @description：业务类型
@@ -21,4 +22,13 @@ export const timeshareOrderStateEnum = [
 	{ label: "进行中", value: 6 },
 	{ label: "等待确认账单", value: 8 },
 	{ label: "已完成", value: 9 }
+];
+
+/**
+ * @description: table组件 element-plus对应字符串
+ */
+export const elementPlusEnum = [
+	{ label: "input", value: ElInput },
+	{ label: "select", value: ElSelect },
+	{ label: "date-picker", value: ElDatePicker }
 ];

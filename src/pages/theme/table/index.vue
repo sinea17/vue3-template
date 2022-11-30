@@ -67,12 +67,58 @@
       </el-table>
       <el-pagination layout="pager, sizes" :total="50" :page-sizes="[5, 10, 15, 20]" />
     </el-card>
+    <el-card>
+      <template #header>
+        <h3>表格组件</h3>
+      </template>
+      <Table :api="OrderService.exportOrderList" :searchParam="searchParam"></Table>
+    </el-card>
   </el-space>
 </template>
   
-<script lang='ts' setup>
+<script lang='tsx' setup>
+import OrderService from "@/api/modules/order";
+import { timeshareOrderStateEnum } from "@/utils/enumData";
+import { SearchParam } from "@/components/Table/interface";
+import SvgIcon from "@/components/SvgIcon.vue";
 
-const inputValue1 = ref('')
+const searchParam: SearchParam[] = [
+  {
+    key: 'value1',
+    label: '姓名',
+    el: "input",
+  },
+  {
+    key: 'value11',
+    label: '带默认值',
+    el: "input",
+    defaultValue: '张珊珊'
+  }, {
+    key: 'value111',
+    label: '姓名',
+    el: "input",
+    slotName: 'prefix',
+    slot: () => {
+      return (
+        <SvgIcon name="search" size="16px" />
+      );
+    }
+  }, {
+    key: 'value3',
+    label: '状态',
+    el: "select",
+    selectOptions: timeshareOrderStateEnum,
+  }, {
+    key: 'value4',
+    label: '带默认值',
+    el: "select",
+    selectOptions: timeshareOrderStateEnum,
+    defaultValue: 4
+  }
+]
+
+
+const inputValue1 = ref('123')
 const tableData = [
   {
     date: '2016-05-03',

@@ -47,12 +47,16 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     Empty: typeof import('./src/components/Empty.vue')['default']
+    Form: typeof import('./src/components/TableForm.vue')['default']
     Header: typeof import('./src/components/layout/Header.vue')['default']
     Main: typeof import('./src/components/layout/Main.vue')['default']
     MapChoose: typeof import('./src/components/MapChoose.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
+    Table: typeof import('./src/components/Table/index.vue')['default']
+    TableForm: typeof import('./src/components/TableForm.vue')['default']
+    Undefined: typeof import('./src/components/Table/index.vue')['default']
     UploadImg: typeof import('./src/components/UploadImg.vue')['default']
   }
   export interface ComponentCustomProperties {
