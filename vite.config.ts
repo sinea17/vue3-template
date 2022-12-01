@@ -9,6 +9,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import viteCompression from "vite-plugin-compression";
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -58,7 +59,8 @@ export default defineConfig(({ mode }) => {
         threshold: 10240,
         algorithm: "gzip",
         ext: ".gz"
-      })
+      }),
+      vueJsx()
     ],
     server: {
       port: 8080,

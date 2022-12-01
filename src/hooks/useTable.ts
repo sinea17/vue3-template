@@ -1,4 +1,4 @@
-import { SearchParam } from "@/components/Table/interface";
+import { SearchParam, PageParam } from "@/components/Table/interface";
 
 /**
  * 参考 https://juejin.cn/post/7166068828202336263
@@ -16,30 +16,54 @@ const useTable = (
   interface TableState {
     tableData: any[];
     formParam: { [key: string]: any };
+    pageParam: PageParam
   }
   const state = reactive<TableState>({
     tableData: [],  //表格数据
     formParam: {},  //查询参数
+    pageParam: {
+      pageNo: 1,
+      pageSize: 10,
+      total: 0
+    }
   });
 
   onMounted(() => {
     reset();
   });
 
+  const getTableData = async () => {
+    try {
+      let { data } = await api({
+        ...state.formParam,
+        ...state.pageParam
+      })
+      console.log('返回数据', data)
+      dataCallBack && (data.data = dataCallBack(data.data));
+      state.tableData = data.data
+      state.pageParam.total = data.total
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   /**
    * @description 重置搜索参数
    * */
   const reset = () => {
     console.log('数据重置')
+    state.formParam = {};
     searchParam.forEach(item => {
       if (item.defaultValue !== undefined) state.formParam[item.key] = item.defaultValue
     })
+    getTableData();
   };
   /**
    * @description 查询数据
    * */
   const search = () => {
-    console.log('查询数据')
+    console.log('查询数据', state.formParam)
+    getTableData()
   };
 
   return {

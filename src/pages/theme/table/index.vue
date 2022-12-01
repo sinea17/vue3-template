@@ -71,7 +71,8 @@
       <template #header>
         <h3>表格组件</h3>
       </template>
-      <Table :api="OrderService.exportOrderList" :searchParam="searchParam"></Table>
+      <Table :api="OrderService.getAllDriverOrder" :searchParam="searchParam" :columnList="columnList">
+      </Table>
     </el-card>
   </el-space>
 </template>
@@ -79,41 +80,62 @@
 <script lang='tsx' setup>
 import OrderService from "@/api/modules/order";
 import { timeshareOrderStateEnum } from "@/utils/enumData";
-import { SearchParam } from "@/components/Table/interface";
+import { SearchParam, ColumnItem } from "@/components/Table/interface";
 import SvgIcon from "@/components/SvgIcon.vue";
 
 const searchParam: SearchParam[] = [
   {
-    key: 'value1',
-    label: '姓名',
+    key: 'fuzzySearch',
     el: "input",
-  },
-  {
-    key: 'value11',
-    label: '带默认值',
-    el: "input",
-    defaultValue: '张珊珊'
+    props: {
+      placeholder: '搜索内容'
+    },
+    slots: [
+      {
+        name: 'prefix',
+        render: () => {
+          return (
+            <SvgIcon name="search" size="16px" />
+          );
+        }
+      }
+    ]
   }, {
-    key: 'value111',
-    label: '姓名',
-    el: "input",
-    slotName: 'prefix',
-    slot: () => {
-      return (
-        <SvgIcon name="search" size="16px" />
-      );
+    key: 'timeRanges',
+    el: "date-picker",
+    props: {
+      type: "daterange",
+      valueFormat: "YYYY-MM-DD"
+    },
+    event: {
+      change: (val: any, form: any) => {
+        form.startTime = val && val[0]
+        form.endTime = val && val[1]
+      }
     }
   }, {
-    key: 'value3',
-    label: '状态',
-    el: "select",
-    selectOptions: timeshareOrderStateEnum,
+    key: 'takingType',
+    defaultValue: 1
+  }
+]
+
+const columnList: ColumnItem[] = [
+  {
+    prop: 'orderNo',
+    label: '订单编号',
   }, {
-    key: 'value4',
-    label: '带默认值',
-    el: "select",
-    selectOptions: timeshareOrderStateEnum,
-    defaultValue: 4
+    prop: 'address',
+    label: '地址',
+    headerRender: (row: ColumnItem) => {
+      return (
+        <el-button type="primary">
+          {row.label}
+        </el-button>
+      )
+    }
+  }, {
+    prop: 'receivableMoney',
+    label: '订单金额',
   }
 ]
 

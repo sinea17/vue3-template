@@ -1,33 +1,27 @@
 <template>
   <el-form :inline="true">
-    <!-- <el-form-item>
-      <el-input v-model="inputValue1" placeholder="搜索内容" clearable>
-        <template #prefix>
-          <SvgIcon name="search" size="16px" />
-        </template>
-      </el-input>
-
-    </el-form-item> -->
-    <el-form-item v-for="(item, index) in paramList" :key="index">
-      <component :is="item.component" v-model="formParam[item.key]" :placeholder="item.label"
-        :clearable="clearable(item)">
+    <el-form-item v-for="(item, index) in paramList" :key="index" v-show="item.el">
+      <component v-if="item.el" :is="item.component" v-model="formParam[item.key]" :clearable="clearable(item)"
+        start-placeholder="开始时间" end-placeholder="结束时间" v-bind="item.props" :placeholder="placeholder(item)"
+        @change="(val: any) => item.event.change(val, formParam)">
         <template v-if="item.el === 'select'">
           <el-option v-for="option in item.selectOptions" :key="option.value" :label="option.label"
             :value="option.value"></el-option>
         </template>
-        <template #[item.slotName] v-if="item.slot">
-          <component :is="item.slot"></component>
+        <template v-for="slot in item.slots" :key="slot.name" #[slot.name]>
+          <component :is="slot.render"></component>
         </template>
       </component>
     </el-form-item>
     <el-form-item btn>
       <el-button type="primary" @click="search">查询</el-button>
+      <el-button @click="reset">重置</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script lang='ts' setup>
-import { ParamList } from "@/components/Table/interface";
+import { ParamList } from "../interface";
 
 interface TableFormProps {
   paramList?: ParamList[];
@@ -41,9 +35,13 @@ const props = withDefaults(defineProps<TableFormProps>(), {
   formParam: () => ({})
 });
 
-// 是否有清除按钮 (当搜索项有默认值时，清除按钮不显示)
+// 是否显示清除按钮 (当搜索项是输入框或者没有默认值时，清除按钮显示)
 const clearable = (param: ParamList) => {
   return param.el == 'input' || param.defaultValue == null || param.defaultValue == undefined;
+};
+// 判断 placeholder
+const placeholder = (param: ParamList) => {
+  return param.props?.placeholder ?? (param.el === "input" ? "请输入" : "请选择");
 };
 
 
