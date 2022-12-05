@@ -69,9 +69,43 @@
     </el-card>
     <el-card>
       <template #header>
-        <h3>表格组件</h3>
+        <h3 @click="test">开箱即用表格组件</h3>
       </template>
-      <Table :api="OrderService.getAllDriverOrder" :searchParam="searchParam" :columnList="columnList">
+      <Table ref="tableRef" :api="OrderService.getAllDriverOrder" :searchParam="searchParam" :columnList="columnList"
+        :dataFormatter="dataFormatter" highlightCurrentRow @row-click="handleRow">
+        <template #receivableMoney="scope">
+          <el-button type="primary" link>
+            {{ scope.row.receivableMoney }}
+          </el-button>
+        </template>
+        <template #address="scope">
+          <div>{{ scope.row.originAddr }}</div>
+          <div>{{ scope.row.destAddr }}</div>
+        </template>
+        <template #node="scope">
+          <template v-if="scope.row.orderState == 4">
+            <CountDownUp v-if="scope.row.freeDuration" :duration="scope.row.freeDuration" @finish="onFinish(scope.row)"
+              v-slot="timeObj">
+              免费取车时间
+              <div class="countdown">
+                <span data-text="时" v-if="timeObj.hours">{{ timeObj.hours }}</span>
+                <span data-text="分" v-if="timeObj.minutes || timeObj.hours">{{ timeObj.minutes }}</span>
+                <span data-text="秒">{{ timeObj.seconds
+                }}</span>
+              </div>
+            </CountDownUp>
+            <CountDownUp v-if="!scope.row.freeDuration" :duration="scope.row.outDuration || 0" countup v-slot="timeObj">
+              取车超时
+              <div class="countup">
+                <span data-text="时" v-if="timeObj.hours">{{ timeObj.hours }}</span>
+                <span data-text="分" v-if="timeObj.minutes || timeObj.hours">{{ timeObj.minutes }}</span>
+                <span data-text="秒">{{ timeObj.seconds
+                }}</span>
+              </div>
+            </CountDownUp>
+          </template>
+          <span v-else>--</span>
+        </template>
       </Table>
     </el-card>
   </el-space>
@@ -79,9 +113,14 @@
   
 <script lang='tsx' setup>
 import OrderService from "@/api/modules/order";
+import AuthService from "@/api/modules/auth";
 import { timeshareOrderStateEnum } from "@/utils/enumData";
 import { SearchParam, ColumnItem } from "@/components/Table/interface";
 import SvgIcon from "@/components/SvgIcon.vue";
+import CountDownUp from "@/components/CountDownUp.vue";
+import { businessFilter, businessFormatter } from "@/utils/filter";
+import { filterEnum } from "@/utils/util";
+
 
 const searchParam: SearchParam[] = [
   {
@@ -107,7 +146,7 @@ const searchParam: SearchParam[] = [
       type: "daterange",
       valueFormat: "YYYY-MM-DD"
     },
-    event: {
+    events: {
       change: (val: any, form: any) => {
         form.startTime = val && val[0]
         form.endTime = val && val[1]
@@ -116,6 +155,9 @@ const searchParam: SearchParam[] = [
   }, {
     key: 'takingType',
     defaultValue: 1
+  }, {
+    key: 'businessId',
+    defaultValue: 6
   }
 ]
 
@@ -123,6 +165,24 @@ const columnList: ColumnItem[] = [
   {
     prop: 'orderNo',
     label: '订单编号',
+    minWidth: '215px'
+  }, {
+    prop: 'businessId',
+    label: '业务',
+    formatter: businessFilter
+  }, {
+    prop: 'orderState',
+    label: '状态',
+    render: (scope) => {
+      return (
+        <span class={'state state-' + scope.row.orderState}>
+          {filterEnum(scope.row.orderState, timeshareOrderStateEnum)}
+        </span>
+      )
+    }
+  }, {
+    prop: 'node',
+    label: '节点'
   }, {
     prop: 'address',
     label: '地址',
@@ -136,8 +196,41 @@ const columnList: ColumnItem[] = [
   }, {
     prop: 'receivableMoney',
     label: '订单金额',
+    formatter: businessFormatter
   }
 ]
+const tableRef = ref();
+const test = () => {
+  tableRef.value.getTableData()
+}
+const handleRow = (row: any) => {
+  console.log(row)
+}
+
+let freeTime = 0;//免费时长（单位毫秒）
+const dataFormatter = async (data: any, currentTime: string) => {
+  if (!freeTime) {
+    //获取免费时长配置（分钟）
+    const configRes: any = await AuthService.getConfig('TIME_SHARING_FREE_PICKUP_TIME')
+    freeTime = configRes.data.paramValue * 60000
+    // freeTime = 25 * 60 * 60000 + 3730 * 1000
+  }
+  data = data.map((item: any) => {
+    if (item.orderState == 4) {
+      const diff: number = new Date(currentTime).getTime() - new Date(item.gmtCreate).getTime()
+      item.freeDuration = freeTime > diff ? freeTime - diff : 0
+      item.outDuration = freeTime > diff ? 0 : diff - freeTime
+    }
+    return item
+  })
+  return data
+}
+
+
+const onFinish = (row: any) => {
+  console.log('倒计时结束', row)
+  row.freeDuration = 0
+}
 
 
 const inputValue1 = ref('123')

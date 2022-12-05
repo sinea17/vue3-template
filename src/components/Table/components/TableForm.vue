@@ -1,9 +1,12 @@
 <template>
   <el-form :inline="true">
+    <!-- <template v-for="(item, index) in paramList" :key="index">
+      <TableFormItem v-if="item.el" :formItem="item"></TableFormItem>
+    </template> -->
     <el-form-item v-for="(item, index) in paramList" :key="index" v-show="item.el">
       <component v-if="item.el" :is="item.component" v-model="formParam[item.key]" :clearable="clearable(item)"
         start-placeholder="开始时间" end-placeholder="结束时间" v-bind="item.props" :placeholder="placeholder(item)"
-        @change="(val: any) => item.event.change(val, formParam)">
+        @change="(val: any) => item.events && item.events.change(val, formParam)">
         <template v-if="item.el === 'select'">
           <el-option v-for="option in item.selectOptions" :key="option.value" :label="option.label"
             :value="option.value"></el-option>
@@ -14,7 +17,7 @@
       </component>
     </el-form-item>
     <el-form-item btn>
-      <el-button type="primary" @click="search">查询</el-button>
+      <el-button type="primary" @click="search" :loading="loading">查询</el-button>
       <el-button @click="reset">重置</el-button>
     </el-form-item>
   </el-form>
@@ -28,6 +31,7 @@ interface TableFormProps {
   formParam?: { [key: string]: any }; //搜索参数
   search: (params: any) => void;      //搜索方法
   reset: (params: any) => void;       //重置方法
+  loading: boolean;
 }
 
 const props = withDefaults(defineProps<TableFormProps>(), {

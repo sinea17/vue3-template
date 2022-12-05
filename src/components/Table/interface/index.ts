@@ -8,11 +8,8 @@ export interface SearchParam {
   el?: 'input' | 'select' | 'date-picker'; //组件类型
   selectOptions?: any[];  //选项集合（选择器使用）
   defaultValue?: string | number | boolean | any[]; //默认值
-  slot?: () => any; //自定义插槽
-  slotName?: string;
-  slots?: Slot[];
-  // event?: { [key: string]: any }
-  event?: any
+  slots?: Slot[]; //自定义插槽集合
+  events?: { [key: string]: any };
 }
 /**
  * 搜索项数组
@@ -42,5 +39,8 @@ export interface PageParam {
 export interface ColumnItem {
   prop: string;
   label: string;
-  headerRender?: (row: ColumnItem) => any; // 表头插槽渲染
+  formatter?: any;
+  render?: (scope: any) => any;  //自定义单元格渲染
+  headerRender?: (row: ColumnItem) => any;  //自定义表头渲染
+  [key: string]: any;
 }

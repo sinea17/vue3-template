@@ -22,6 +22,7 @@ const token = ref()
 const handleLogin = () => {
   if (!token.value) {
     ElMessage.error('请输入token')
+    return
   }
   globalStore.setToken(token.value)
   globalStore.setUserInfo({
