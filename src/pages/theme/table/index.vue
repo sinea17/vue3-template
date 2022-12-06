@@ -115,20 +115,18 @@
 import OrderService from "@/api/modules/order";
 import AuthService from "@/api/modules/auth";
 import { timeshareOrderStateEnum } from "@/utils/enumData";
-import { SearchParam, ColumnItem } from "@/components/Table/interface";
+import { SearchItem, ColumnItem } from "@/components/Table/interface";
 import SvgIcon from "@/components/SvgIcon.vue";
 import CountDownUp from "@/components/CountDownUp.vue";
-import { businessFilter, businessFormatter } from "@/utils/filter";
+import { businessFilter, businessFormatter, moneyFormatter } from "@/utils/filter";
 import { filterEnum } from "@/utils/util";
 
 
-const searchParam: SearchParam[] = [
+const searchParam: SearchItem[] = [
   {
     key: 'fuzzySearch',
     el: "input",
-    props: {
-      placeholder: '搜索内容'
-    },
+    placeholder: '搜索内容',
     slots: [
       {
         name: 'prefix',
@@ -142,14 +140,12 @@ const searchParam: SearchParam[] = [
   }, {
     key: 'timeRanges',
     el: "date-picker",
-    props: {
-      type: "daterange",
-      valueFormat: "YYYY-MM-DD"
-    },
+    type: "daterange",
+    valueFormat: "YYYY-MM-DD",
     events: {
-      change: (val: any, form: any) => {
-        form.startTime = val && val[0]
-        form.endTime = val && val[1]
+      change: (val: any) => {
+        tableRef.value.formParam.startTime = val && val[0]
+        tableRef.value.formParam.endTime = val && val[1]
       }
     }
   }, {
@@ -169,7 +165,7 @@ const columnList: ColumnItem[] = [
   }, {
     prop: 'businessId',
     label: '业务',
-    formatter: businessFilter
+    formatter: businessFormatter
   }, {
     prop: 'orderState',
     label: '状态',
@@ -196,7 +192,7 @@ const columnList: ColumnItem[] = [
   }, {
     prop: 'receivableMoney',
     label: '订单金额',
-    formatter: businessFormatter
+    formatter: moneyFormatter
   }
 ]
 const tableRef = ref();

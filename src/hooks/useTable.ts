@@ -1,4 +1,4 @@
-import { SearchParam, PageParam } from "@/components/Table/interface";
+import { SearchItem, PageParam } from "@/components/Table/interface";
 
 /**
  * 参考 https://juejin.cn/post/7166068828202336263
@@ -9,7 +9,7 @@ import { SearchParam, PageParam } from "@/components/Table/interface";
 
 const useTable = (
   api: (params: any) => Promise<any>,
-  searchParam: SearchParam[],
+  searchParam: SearchItem[],
   dataFormatter?: (data: any, currentTime: string) => any
 ) => {
 

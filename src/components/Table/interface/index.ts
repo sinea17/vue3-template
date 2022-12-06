@@ -1,7 +1,7 @@
 /**
  * 搜索项
  */
-export interface SearchParam {
+export interface SearchItem {
   key: string;  //字段名
   label?: string;  //字段描述
   props?: any; //组件配置
@@ -9,13 +9,9 @@ export interface SearchParam {
   selectOptions?: any[];  //选项集合（选择器使用）
   defaultValue?: string | number | boolean | any[]; //默认值
   slots?: Slot[]; //自定义插槽集合
-  events?: { [key: string]: any };
-}
-/**
- * 搜索项数组
- */
-export interface ParamList extends SearchParam {
-  component: any; //element组件
+  events?: { [key: string]: any };  //绑定事件集合
+  component?: any;  //element组件
+  [key: string]: any;
 }
 /**
  * 插槽项

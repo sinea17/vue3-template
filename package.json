@@ -17,7 +17,7 @@
     "prettier": "prettier --write"
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",

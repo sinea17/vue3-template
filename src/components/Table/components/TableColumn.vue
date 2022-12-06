@@ -12,12 +12,12 @@ const slots = useSlots();
 
 const columnRender = (item: ColumnItem) => {
   return (
-    <ElTableColumn {...item}>
+    <ElTableColumn {...item} >
       {{
-        default: (scope: any) => {
+        //渲染顺序：render > slots > formatter > defualt
+        default: item.formatter && !item.render && !slots[item.prop] ? null : (scope: any) => {
           if (item.render) return item.render(scope);
           if (slots[item.prop]) return slots[item.prop!]!(scope);
-          if (item.formatter) return item.formatter(scope.row[item.prop])
           return scope.row[item.prop]
         },
         header: () => {
