@@ -20,7 +20,7 @@
   </el-form>
 </template>
 
-<script lang='tsx' setup>
+<script lang='ts' setup>
 import { SearchItem } from "../interface";
 import { filterEnum } from "@/utils/util";
 import { elementPlusEnum } from "@/utils/enumData";

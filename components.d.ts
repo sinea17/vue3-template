@@ -56,7 +56,6 @@ declare module '@vue/runtime-core' {
     Table: typeof import('./src/components/Table/index.vue')['default']
     TableColumn: typeof import('./src/components/Table/components/TableColumn.vue')['default']
     TableForm: typeof import('./src/components/Table/components/TableForm.vue')['default']
-    TableFormItem: typeof import('./src/components/Table/components/TableFormItem.vue')['default']
     UploadImg: typeof import('./src/components/UploadImg.vue')['default']
   }
   export interface ComponentCustomProperties {
