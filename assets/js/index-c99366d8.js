@@ -1,0 +1,1 @@
+import{_ as c,e as r,o as _,c as s,w as e,a as o,n as l,f as d,P as p,r as u}from"./components-7ef916d1.js";const m={},f=d("h1",null,"page1",-1);function i(x,g){const t=p,n=u("router-link"),a=r;return _(),s(a,null,{default:e(()=>[o(t),f,o(n,{to:"/theme/breadcrumb/page1/page1-1"},{default:e(()=>[l("page1-1")]),_:1})]),_:1})}const k=c(m,[["render",i]]);export{k as default};
