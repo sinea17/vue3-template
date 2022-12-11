@@ -1,8 +1,9 @@
 <template>
   <el-form :inline="true">
     <el-form-item v-for="(item, index) in searchParam" :key="index" v-show="item.el">
-      <component v-if="item.el" :is="component(item)" v-model="formParam[item.key]" :clearable="clearable(item)"
-        start-placeholder="开始时间" end-placeholder="结束时间" v-bind="item" :placeholder="placeholder(item)"
+      <!-- item.slots循环无法使用if判断，会被datePicker当成默认插槽无法渲染日期 -->
+      <el-date-picker v-if="item.el == 'date-picker'" v-model="formParam[item.key]" start-placeholder="开始时间" end-placeholder="结束时间" :clearable="clearable(item)" :type="item.type" :value-format="item.valueFormat" v-on="{ ...item.events }"/>
+      <component v-else-if="item.el" :is="component(item)" v-model="formParam[item.key]" :clearable="clearable(item)" v-bind="item" :placeholder="placeholder(item)"
         v-on="{ ...item.events }">
         <template v-if="item.el === 'select'">
           <el-option v-for="option in item.selectOptions" :key="option.value" :label="option.label"
