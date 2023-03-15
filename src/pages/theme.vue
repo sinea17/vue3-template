@@ -141,7 +141,6 @@ const handleNavItem = (path: any) => {
 </style>
 
 <route lang="yaml">
-path: /
 meta:
   title: 主题预览
   nologin: true
