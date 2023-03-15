@@ -1,0 +1,1 @@
+import{_ as t,y as a,o as s,c as _,w as r,a as l,q as d,P as f}from"./components-58414e35.js";import{b as e}from"./route-block-a16d19b1.js";const o={},p=d("h1",null,"page2",-1);function i(u,m){const c=f,n=a;return s(),_(n,null,{default:r(()=>[l(c),p]),_:1})}typeof e=="function"&&e(o);const B=t(o,[["render",i]]);export{B as default};
