@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     CountDownUp: typeof import('./src/components/CountDownUp.vue')['default']
     Dialog: typeof import('./src/components/Dialog.vue')['default']
     Drawer: typeof import('./src/components/Drawer.vue')['default']
+    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']

@@ -53,6 +53,7 @@
     "vite-plugin-pages": "^0.23.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-layouts": "^0.6.0",
+    "vite-plugin-vue-setup-extend-plus": "^0.1.0",
     "vue-router": "^4.0.15",
     "vue-tsc": "0.35.0"
   }
