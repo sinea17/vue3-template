@@ -1,0 +1,1 @@
+import{_ as a,o as n,c as s,w as _,a as r,h as l,P as p,e as f}from"./components-86a3f362.js";import{b as e}from"./index-ecb028a8.js";const o={},d=l("h1",null,"page3",-1);function u(i,m){const c=p,t=f;return n(),s(t,null,{default:_(()=>[r(c),d]),_:1})}typeof e=="function"&&e(o);const B=a(o,[["render",u]]);export{B as default};
