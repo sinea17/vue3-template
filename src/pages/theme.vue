@@ -2,12 +2,13 @@
   <el-container>
     <el-aside width="260px">
       <a href="./" class="logo">
-        <img src="@/assets/images/img-logo-blue.png" alt="阳洋出行logo">
+        <img src="@/assets/images/img-logo-blue.png" alt="阳洋出行logo" />
       </a>
       <el-scrollbar>
-        <div :class="{ 'nav-item': true, 'active': navActive == item.path }" v-for="(item, index) in navList"
-          :key="index" @click="handleNavItem(item.path)">
-          {{ item.text }}</div>
+        <div :class="{ 'nav-item': true, active: navActive == item.path }" v-for="(item, index) in navList" :key="index"
+          @click="handleNavItem(item.path)">
+          {{ item.text }}
+        </div>
       </el-scrollbar>
     </el-aside>
     <el-main>
@@ -22,44 +23,53 @@
 const navList = reactive([
   {
     text: 'Home 首页',
-    path: '/theme'
-  }, {
+    path: '/theme',
+  },
+  {
     text: 'Button 按钮',
-    path: '/theme/button'
-  }, {
+    path: '/theme/button',
+  },
+  {
     text: 'Icon 业务图标',
-    path: '/theme/icon'
-  }, {
+    path: '/theme/icon',
+  },
+  {
     text: 'CountDownUp 正倒计时',
-    path: '/theme/countdownup'
-  }, {
+    path: '/theme/countdownup',
+  },
+  {
     text: 'Breadcrumb 面包屑',
-    path: '/theme/breadcrumb'
-  }, {
+    path: '/theme/breadcrumb',
+  },
+  {
     text: 'Form 表单',
-    path: '/theme/form'
-  }, {
+    path: '/theme/form',
+  },
+  {
     text: 'Table 表格列表',
-    path: '/theme/table'
-  }, {
+    path: '/theme/table',
+  },
+  {
     text: 'Map 地图选点',
-    path: '/theme/map'
-  }, {
+    path: '/theme/map',
+  },
+  {
     text: 'Drawer 抽屉',
-    path: '/theme/drawer'
-  }, {
+    path: '/theme/drawer',
+  },
+  {
     text: 'Dialog 弹窗',
-    path: '/theme/dialog'
-  }
-])
+    path: '/theme/dialog',
+  },
+]);
 const route = useRoute();
 const router = useRouter();
 const navActive = computed(() => {
-  return route.path
+  return route.path;
 });
 const handleNavItem = (path: any) => {
-  router.push(path)
-}
+  router.push(path);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -90,7 +100,6 @@ const handleNavItem = (path: any) => {
       margin: 0 10px 0 22px;
     }
   }
-
 }
 
 .el-main {
@@ -110,9 +119,11 @@ const handleNavItem = (path: any) => {
   }
 
   &.active {
-    background: linear-gradient(270deg, #324DFD 0%, white 300%);
+    background: linear-gradient(270deg, #324dfd 0%, white 300%);
     color: #fff;
-    box-shadow: 0 3px 3px -2px rgba(58, 53, 65, 0.08), 0 3px 4px 0 rgba(58, 53, 65, 0.12), 0 1px 8px 0 rgba(58, 53, 65, 0.12);
+    box-shadow: 0 3px 3px -2px rgba(58, 53, 65, 0.08),
+      0 3px 4px 0 rgba(58, 53, 65, 0.12),
+      0 1px 8px 0 rgba(58, 53, 65, 0.12);
   }
 
   &+& {
@@ -130,6 +141,7 @@ const handleNavItem = (path: any) => {
 </style>
 
 <route lang="yaml">
+path: /
 meta:
   title: 主题预览
   nologin: true
